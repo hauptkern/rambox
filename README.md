@@ -10,10 +10,10 @@ Temporary file storage solution using tmpfs.
 `pip3 install -r requirements.txt`
 ## Screenshots
 
-![Image](https://github.com/hauptkern/rambox/main/screenshots/home.png)
+![Image](https://github.com/hauptkern/rambox/blob/main/screenshots/home.png)
 
-![Image](https://github.com/hauptkern/rambox/main/screenshots/torrent.png)
+![Image](https://github.com/hauptkern/rambox/blob/main/screenshots/torrent.png)
 
-![Image](https://github.com/hauptkern/rambox/main/screenshots/torrent2.png)
+![Image](https://github.com/hauptkern/rambox/blob/main/screenshots/torrent2.png)
 
-![Image](https://github.com/hauptkern/rambox/main/screenshots/torrent3.png)
+![Image](https://github.com/hauptkern/rambox/blob/main/screenshots/torrent3.png)
