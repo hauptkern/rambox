@@ -1,0 +1,5 @@
+[mount]
+mountpoint = /mnt
+
+[videoplayer]
+player = vlc
