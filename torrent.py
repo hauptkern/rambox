@@ -57,12 +57,12 @@ class torrent:
         self.mainframe=mainframe
         self.progressupdater=threading.Thread(target=self.streamloader,daemon=True)
         self.progressupdater.start()
-    def kill(self,event):
+    def kill(self,event=""):
         self.h.pause()
         time.sleep(1)
         self.mountedfs.umount()
         sys.exit()
-    def reload(self,event):
+    def reload(self,event=""):
         self.ses.remove_torrent(self.h)
         time.sleep(1)
         self.mountedfs.umount()
