@@ -23,8 +23,8 @@ class tmpfs:
         def __init__(self):
             self.root=tk.Tk()
             root=self.root
-            root.tk.call("source", sys.path[0]+"/azure.tcl")
-            root.tk.call("set_theme", "dark")
+            #root.tk.call("source", sys.path[0]+"/azure.tcl")
+            #root.tk.call("set_theme", "dark")
             root.geometry("400x100")
             root.title("Enter your root password")
             mainframe=tk.Frame(root)
