@@ -1,6 +1,5 @@
 import configparser,os
 CONFIG_FILE=str(os.path.join(os.getenv("HOME"), ".rambox", "config.ini"))
-CONFIG_FILE="config.ini"
 class configurator:
     def readconfig(self):
         return self.config
