@@ -62,6 +62,14 @@ class torrent:
         time.sleep(1)
         self.mountedfs.umount()
         sys.exit()
+    def reload(self,event):
+        self.ses.remove_torrent(self.h)
+        time.sleep(1)
+        self.mountedfs.umount()
+        self.reloaded=True
+        for widget in self.resetframe.winfo_children():
+                widget.destroy()
+        self.resetclass(self.resetframe)
     def streamloader(self):
         s=self.h.status()
         mainframe=self.mainframe
@@ -75,20 +83,29 @@ class torrent:
         statusbutton=ttk.Button(mainframe,text="Kill")
         statusbutton.bind("<Button-1>",self.kill)
         statusbutton.pack(side=RIGHT)
+        statusbuttontwo=ttk.Button(mainframe,text="Reload Tab")
+        statusbuttontwo.bind("<Button-1>",self.reload)
+        statusbuttontwo.pack(side=RIGHT,padx=5)
         playerrunning=False
-        while (not s.is_seeding):
-            s=self.h.status()
+        while (not s.is_seeding) and self.reloaded==False:
+            try:
+                s=self.h.status()
+            except RuntimeError:
+                break
             if round(s.progress*100,0)==100 and playerrunning==False:
+                self.h.pause()
                 playerrunning=True
                 statuslabel.configure(text="Opened "+str(playerpath)+" player.")
                 x=subprocess.Popen([playerpath,mountpoint+self.filepath])
                 status=x.wait()
-                self.h.pause()
                 time.sleep(2)
-                self.mountedfs.umount()
+                self.kill()
             else:
-                statuslabel.configure(text="Loading "+str(self.filepath).split("/")[-1][:35]+"... "+str(round(s.progress*100,2))+"%"f' D:{str(s.download_rate / 1000).split(".")[0]} kB/s')
-            time.sleep(0.5)
+                try:
+                    statuslabel.configure(text="Loading "+str(self.filepath).split("/")[-1][:35]+"..."+str(round(s.progress*100,2))+"%"f' D:{str(s.download_rate / 1000).split(".")[0]} kB/s')
+                    time.sleep(1.5)
+                except:
+                    pass
     def getFilenames(self):
         self.info=lt.torrent_info(self.link)
         filenames=[]
@@ -97,3 +114,4 @@ class torrent:
         return filenames
     def __init__(self,filepath):
         self.link=filepath
+        self.reloaded=False

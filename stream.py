@@ -17,6 +17,8 @@ class streamtabBuilder:
         else:
             self.magnetentry.insert(0, str(filepath))
             self.torrentsession=torrent(str(filepath))
+            self.torrentsession.resetclass=streamtabBuilder
+            self.torrentsession.resetframe=self.frame
             self.torrenttable()
     def listboxselection(self,event):
         selection = event.widget.curselection()
